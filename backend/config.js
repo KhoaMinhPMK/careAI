@@ -1,6 +1,6 @@
 // CareAI Configuration
 module.exports = {
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 3008,
   DB_PATH: process.env.DB_PATH || './data/careai.db',
   GROQ_API_KEY: process.env.GROQ_API_KEY || '',
   GROQ_MODEL: 'llama-3.3-70b-versatile',
