@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Theo Dõi – CareAI</title>
+  <meta name="description" content="CareAI Dashboard - Tổng quan chất lượng dữ liệu EHR dinh dưỡng nhi">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body data-page="dashboard">
+  <div class="app-layout">
+    <div id="app-sidebar"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h2><span data-icon="layout-dashboard" data-icon-size="22"></span> <span data-i18n="dashboard.title">Bảng Theo Dõi</span></h2>
+          <p class="description" data-i18n="dashboard.desc">Tổng quan chất lượng dữ liệu EHR dinh dưỡng nhi</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue"><span data-icon="users" data-icon-size="22"></span></div>
+          <div><div class="stat-value" id="stat-patients">-</div><div class="stat-label" data-i18n="dashboard.totalPatients">Tổng Bệnh Nhân</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple"><span data-icon="activity" data-icon-size="22"></span></div>
+          <div><div class="stat-value" id="stat-obs">-</div><div class="stat-label" data-i18n="dashboard.observations">Quan Sát</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange"><span data-icon="alert-triangle" data-icon-size="22"></span></div>
+          <div><div class="stat-value" id="stat-alerts">-</div><div class="stat-label" data-i18n="dashboard.activeAlerts">Cảnh Báo</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><span data-icon="check-circle" data-icon-size="22"></span></div>
+          <div><div class="stat-value" id="stat-quality">-</div><div class="stat-label" data-i18n="dashboard.avgQuality">Chất Lượng TB</div></div>
+        </div>
+      </div>
+
+      <!-- Charts Row 1 -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><span class="card-title"><span data-icon="pie-chart" data-icon-size="18"></span> <span data-i18n="dashboard.severityDist">Phân Bố Mức Nghiêm Trọng</span></span></div>
+          <canvas id="chart-severity" height="220"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title"><span data-icon="bar-chart-3" data-icon-size="18"></span> <span data-i18n="dashboard.topAlertTypes">Loại Cảnh Báo Phổ Biến</span></span></div>
+          <canvas id="chart-alert-types" height="220"></canvas>
+        </div>
+      </div>
+
+      <!-- Charts Row 2 -->
+      <div class="grid-2" style="margin-top:16px;">
+        <div class="card">
+          <div class="card-header"><span class="card-title"><span data-icon="pie-chart" data-icon-size="18"></span> <span data-i18n="dashboard.riskDist">Phân Bố Nguy Cơ</span></span></div>
+          <canvas id="chart-risk" height="220"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title"><span data-icon="bar-chart-3" data-icon-size="18"></span> <span data-i18n="dashboard.wardOverview">Theo Khoa</span></span></div>
+          <canvas id="chart-ward" height="220"></canvas>
+        </div>
+      </div>
+
+      <!-- Recent Alerts -->
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header"><span class="card-title"><span data-icon="bell" data-icon-size="18"></span> <span data-i18n="dashboard.recentAlerts">Cảnh Báo Gần Đây</span></span></div>
+        <div class="alert-feed" id="alert-feed"></div>
+      </div>
+
+      <div class="footer">CareAI &copy; 2026 — HSIL Hackathon — Harvard T.H. Chan School of Public Health</div>
+    </main>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/copilot.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    (async () => {
+      await I18N.init();
+      Layout.injectSidebar('dashboard');
+      Copilot.init();
+      injectIcons();
+      loadDashboard();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ Sơ Bệnh Nhân – CareAI</title>
+  <meta name="description" content="CareAI - Chi tiết hồ sơ bệnh nhân nhi">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body data-page="patients">
+  <div class="app-layout">
+    <div id="app-sidebar"></div>
+    <main class="main-content">
+
+      <!-- Sticky Patient Banner -->
+      <div class="patient-banner" id="patient-banner">
+        <div class="banner-avatar" id="banner-avatar">--</div>
+        <div class="banner-info">
+          <div class="banner-name" id="banner-name">-</div>
+          <div class="banner-meta" id="banner-meta">-</div>
+        </div>
+        <span id="banner-severity"></span>
+      </div>
+
+      <!-- AI Summary Card -->
+      <div id="ai-summary"></div>
+
+      <!-- Nutrition Summary -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-header"><span class="card-title"><span data-icon="clipboard" data-icon-size="18"></span> <span data-i18n="patient.nutritionSummary">Tóm Tắt Dinh Dưỡng</span></span></div>
+        <div class="nutrition-grid" id="nutrition-grid">
+          <div class="nutrition-item"><div class="label" data-i18n="patient.weight">Cân Nặng</div><div class="value" id="nut-weight">-</div><div class="unit">kg</div></div>
+          <div class="nutrition-item"><div class="label" data-i18n="patient.height">Chiều Cao</div><div class="value" id="nut-height">-</div><div class="unit">cm</div></div>
+          <div class="nutrition-item"><div class="label" data-i18n="patient.zscore">Điểm Z (WAZ)</div><div class="value" id="nut-zscore">-</div><div class="unit">SD</div></div>
+          <div class="nutrition-item"><div class="label" data-i18n="patient.dqScore">CLDT</div><div class="value" id="nut-dq">-</div><div class="unit">%</div></div>
+          <div class="nutrition-item"><div class="label" data-i18n="patient.alertsActive">Cảnh Báo</div><div class="value" id="nut-alerts">-</div><div class="unit" id="nut-alerts-label"></div></div>
+          <div class="nutrition-item"><div class="label" data-i18n="patient.obsTotal">Quan Sát</div><div class="value" id="nut-obs">-</div><div class="unit" id="nut-obs-label"></div></div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="growth"><span data-icon="trending-up" data-icon-size="16"></span> <span data-i18n="patient.growthChart">Biểu Đồ Tăng Trưởng</span></button>
+        <button class="tab-btn" data-tab="alerts"><span data-icon="alert-triangle" data-icon-size="16"></span> <span data-i18n="patient.alerts">Cảnh Báo</span></button>
+        <button class="tab-btn" data-tab="notes"><span data-icon="file-text" data-icon-size="16"></span> <span data-i18n="patient.notes">Ghi Chú</span></button>
+        <button class="tab-btn" data-tab="fhir"><span data-icon="database" data-icon-size="16"></span> <span data-i18n="patient.fhir">FHIR</span></button>
+      </div>
+
+      <!-- Tab Content: Growth -->
+      <div class="tab-content active" id="tab-growth">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title"><span data-icon="trending-up" data-icon-size="18"></span> <span data-i18n="patient.weightTrend">Xu Hướng Cân Nặng với Dải Z-Score WHO</span></span>
+            <button class="btn btn-sm btn-ghost" id="btn-revalidate" onclick="revalidatePatient()">
+              <span data-icon="refresh-cw" data-icon-size="14"></span> <span data-i18n="patient.revalidate">Kiểm tra lại</span>
+            </button>
+          </div>
+          <canvas id="chart-growth" height="300"></canvas>
+        </div>
+      </div>
+
+      <!-- Tab Content: Alerts -->
+      <div class="tab-content" id="tab-alerts">
+        <div class="card">
+          <div class="card-header"><span class="card-title"><span data-icon="alert-triangle" data-icon-size="18"></span> <span data-i18n="patient.alerts">Cảnh Báo</span></span></div>
+          <div class="alert-feed" id="patient-alerts"></div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Notes -->
+      <div class="tab-content" id="tab-notes">
+        <div class="card">
+          <div class="card-header"><span class="card-title"><span data-icon="file-text" data-icon-size="18"></span> <span data-i18n="patient.notes">Ghi Chú</span></span></div>
+          <div id="patient-notes"></div>
+        </div>
+      </div>
+
+      <!-- Tab Content: FHIR -->
+      <div class="tab-content" id="tab-fhir">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title"><span data-icon="database" data-icon-size="18"></span> <span data-i18n="patient.fhirExport">Xuất FHIR Bundle</span></span>
+            <button class="btn btn-sm btn-ghost" id="btn-download-json">
+              <span data-icon="download" data-icon-size="14"></span> <span data-i18n="patient.downloadJson">Tải JSON</span>
+            </button>
+          </div>
+          <div class="json-viewer" id="fhir-viewer"></div>
+        </div>
+      </div>
+
+      <div class="footer">CareAI &copy; 2026 — HSIL Hackathon — Harvard T.H. Chan School of Public Health</div>
+    </main>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/copilot.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/patient-detail.js"></script>
+  <script>
+    (async () => {
+      await I18N.init();
+      Layout.injectSidebar('patients');
+      Copilot.init();
+      injectIcons();
+      loadPatientDetail();
+    })();
+  </script>
+</body>
+</html>

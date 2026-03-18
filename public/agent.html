@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent – CareAI</title>
+  <meta name="description" content="Chat with CareAI's AI agent for pediatric nutrition data analysis and clinical decision support.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-icon" data-icon="stethoscope" data-icon-size="20"></div>
+        <h1>CareAI</h1>
+        <span class="badge">MVP</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html"><span data-icon="home" data-icon-size="18"></span> Home</a></li>
+        <li><a href="dashboard.html"><span data-icon="dashboard" data-icon-size="18"></span> Dashboard</a></li>
+        <li><a href="patients.html"><span data-icon="users" data-icon-size="18"></span> Patients</a></li>
+        <li><a href="agent.html" class="active"><span data-icon="robot" data-icon-size="18"></span> AI Agent</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" style="max-width: 900px;">
+    <div class="page-header">
+      <div>
+        <h2><span data-icon="robot" data-icon-size="22"></span> AI Clinical Assistant</h2>
+        <p class="description">Ask questions about patient data, alerts, or nutritional assessment</p>
+      </div>
+      <!-- Patient Selector -->
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <select id="patient-selector" style="padding-left: 14px; min-width: 200px;" onchange="onPatientSelect()">
+          <option value="">No patient selected</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div class="chat-container" style="height: calc(100vh - 240px); max-height: none;">
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-message assistant">
+            <h3>Welcome to CareAI</h3>
+            <p>I'm your pediatric nutrition data quality assistant. I can help you:</p>
+            <ul style="margin: 8px 0; padding-left: 20px;">
+              <li><strong>Analyze patient data</strong> — identify measurement errors and quality issues</li>
+              <li><strong>Explain alerts</strong> — understand why measurements were flagged</li>
+              <li><strong>Summarize status</strong> — review growth trends and z-scores</li>
+              <li><strong>Clinical context</strong> — cross-reference notes with structured data</li>
+            </ul>
+            <p style="margin-top: 8px; color: var(--text-tertiary); font-size: 0.85rem;">
+              Select a patient from the dropdown above for patient-specific analysis.
+            </p>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="if(event.key==='Enter')sendMessage()" style="padding-left: 14px;">
+          <button class="btn btn-primary" onclick="sendMessage()"><span data-icon="send" data-icon-size="16"></span> Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/agent.js"></script>
+</body>
+</html>

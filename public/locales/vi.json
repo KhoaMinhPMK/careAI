@@ -1,0 +1,120 @@
+{
+  "app": {
+    "name": "CareAI",
+    "version": "v1.0"
+  },
+  "nav": {
+    "dashboard": "Bảng Theo Dõi",
+    "patients": "Bệnh Nhân",
+    "medicalRecord": "Nhập Hồ Sơ",
+    "settings": "Cài Đặt",
+    "logout": "Đăng Xuất",
+    "copilot": "Trợ Lý AI"
+  },
+  "login": {
+    "subtitle": "Hệ thống kiểm định chất lượng dữ liệu EHR dinh dưỡng nhi",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "submit": "Đăng nhập",
+    "demo_note": "Demo: admin / admin",
+    "error": "Sai tên đăng nhập hoặc mật khẩu"
+  },
+  "dashboard": {
+    "title": "Bảng Theo Dõi",
+    "desc": "Tổng quan chất lượng dữ liệu EHR dinh dưỡng nhi",
+    "totalPatients": "Tổng Bệnh Nhân",
+    "observations": "Quan Sát",
+    "activeAlerts": "Cảnh Báo",
+    "avgQuality": "Chất Lượng TB",
+    "severityDist": "Phân Bố Mức Nghiêm Trọng",
+    "riskDist": "Phân Bố Nguy Cơ",
+    "topAlertTypes": "Loại Cảnh Báo Phổ Biến",
+    "recentAlerts": "Cảnh Báo Gần Đây",
+    "wardOverview": "Theo Khoa",
+    "worklist": "Danh Sách Ưu Tiên",
+    "noAlerts": "Không có cảnh báo",
+    "allPassed": "Tất cả kiểm tra đều đạt",
+    "trend7d": "Xu Hướng 7 Ngày"
+  },
+  "patients": {
+    "title": "Danh Sách Bệnh Nhân",
+    "desc": "Tất cả bệnh nhân nhi đang theo dõi dinh dưỡng",
+    "search": "Tìm theo tên hoặc mã hồ sơ...",
+    "allRisk": "Tất cả mức nguy cơ",
+    "allWards": "Tất cả khoa",
+    "name": "Bệnh Nhân",
+    "mrn": "Mã HS",
+    "age": "Tuổi",
+    "ward": "Khoa",
+    "risk": "Nguy Cơ",
+    "dqScore": "CLDT",
+    "alerts": "Cảnh Báo",
+    "noPatients": "Không tìm thấy bệnh nhân"
+  },
+  "patient": {
+    "weight": "Cân Nặng",
+    "height": "Chiều Cao",
+    "zscore": "Điểm Z (WAZ)",
+    "dqScore": "CLDT",
+    "alertsActive": "Cảnh Báo",
+    "obsTotal": "Quan Sát",
+    "admissionDate": "Ngày nhập viện",
+    "diagnosis": "Chẩn đoán",
+    "growthChart": "Biểu Đồ Tăng Trưởng",
+    "alerts": "Cảnh Báo",
+    "notes": "Ghi Chú",
+    "fhir": "FHIR",
+    "revalidate": "Kiểm tra lại",
+    "downloadJson": "Tải JSON",
+    "noAlerts": "Không có cảnh báo",
+    "allGood": "Tất cả chỉ số bình thường!",
+    "noNotes": "Không có ghi chú lâm sàng",
+    "weightTrend": "Xu Hướng Cân Nặng với Dải Z-Score WHO",
+    "fhirExport": "Xuất FHIR Bundle",
+    "nutritionSummary": "Tóm Tắt Dinh Dưỡng",
+    "active": "đang hoạt động",
+    "total": "tổng"
+  },
+  "copilot": {
+    "title": "Trợ Lý AI",
+    "welcome": "Xin chào! Tôi là CareAI, sẵn sàng hỗ trợ bạn phân tích dữ liệu bệnh nhân.",
+    "placeholder": "Hỏi về bệnh nhân...",
+    "send": "Gửi",
+    "thinking": "Đang phân tích...",
+    "selectPatient": "Chọn bệnh nhân...",
+    "noPatient": "Chưa chọn bệnh nhân",
+    "insight": "Phân Tích AI",
+    "refresh": "Làm mới",
+    "askMore": "Hỏi thêm",
+    "viewDetail": "Xem chi tiết"
+  },
+  "severity": {
+    "critical": "Nghiêm trọng",
+    "high": "Cao",
+    "warning": "Cảnh báo",
+    "info": "Thông tin",
+    "moderate": "Trung bình",
+    "low": "Thấp"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "retry": "Thử lại",
+    "close": "Đóng",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "back": "Quay lại",
+    "kg": "kg",
+    "cm": "cm",
+    "sd": "SD",
+    "percent": "%",
+    "year": "tuổi",
+    "month": "tháng",
+    "day": "ngày"
+  },
+  "lang": {
+    "vi": "Tiếng Việt",
+    "en": "English"
+  }
+}

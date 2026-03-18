@@ -1,0 +1,120 @@
+{
+  "app": {
+    "name": "CareAI",
+    "version": "v1.0"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "patients": "Patients",
+    "medicalRecord": "Medical Record",
+    "settings": "Settings",
+    "logout": "Logout",
+    "copilot": "AI Copilot"
+  },
+  "login": {
+    "subtitle": "AI-Powered EHR Data Validation for Pediatric Nutrition",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Sign In",
+    "demo_note": "Demo: admin / admin",
+    "error": "Invalid username or password"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "desc": "Overview of pediatric EHR data quality across all patients",
+    "totalPatients": "Total Patients",
+    "observations": "Observations",
+    "activeAlerts": "Active Alerts",
+    "avgQuality": "Avg Quality",
+    "severityDist": "Alert Severity Distribution",
+    "riskDist": "Risk Level Distribution",
+    "topAlertTypes": "Top Alert Types",
+    "recentAlerts": "Recent Alerts",
+    "wardOverview": "Ward Overview",
+    "worklist": "Priority Worklist",
+    "noAlerts": "No active alerts",
+    "allPassed": "All data quality checks passed",
+    "trend7d": "7-Day Trend"
+  },
+  "patients": {
+    "title": "Patients",
+    "desc": "All pediatric patients under nutritional monitoring",
+    "search": "Search by name or MRN...",
+    "allRisk": "All Risk Levels",
+    "allWards": "All Wards",
+    "name": "Patient",
+    "mrn": "MRN",
+    "age": "Age",
+    "ward": "Ward",
+    "risk": "Risk",
+    "dqScore": "DQ Score",
+    "alerts": "Alerts",
+    "noPatients": "No patients found"
+  },
+  "patient": {
+    "weight": "Weight",
+    "height": "Height",
+    "zscore": "Z-Score (WAZ)",
+    "dqScore": "DQ Score",
+    "alertsActive": "Alerts",
+    "obsTotal": "Observations",
+    "admissionDate": "Admitted",
+    "diagnosis": "Diagnosis",
+    "growthChart": "Growth Chart",
+    "alerts": "Alerts",
+    "notes": "Notes",
+    "fhir": "FHIR",
+    "revalidate": "Re-validate",
+    "downloadJson": "Download JSON",
+    "noAlerts": "No active alerts",
+    "allGood": "All measurements look good!",
+    "noNotes": "No clinical notes",
+    "weightTrend": "Weight Trend with WHO Z-Score Bands",
+    "fhirExport": "FHIR Bundle Export",
+    "nutritionSummary": "Nutrition Summary",
+    "active": "active",
+    "total": "total"
+  },
+  "copilot": {
+    "title": "AI Copilot",
+    "welcome": "Hi! I'm CareAI, ready to help analyze patient data.",
+    "placeholder": "Ask about a patient...",
+    "send": "Send",
+    "thinking": "Analyzing...",
+    "selectPatient": "Select patient...",
+    "noPatient": "No patient selected",
+    "insight": "AI Insight",
+    "refresh": "Refresh",
+    "askMore": "Ask more",
+    "viewDetail": "View detail"
+  },
+  "severity": {
+    "critical": "Critical",
+    "high": "High",
+    "warning": "Warning",
+    "info": "Info",
+    "moderate": "Moderate",
+    "low": "Low"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "kg": "kg",
+    "cm": "cm",
+    "sd": "SD",
+    "percent": "%",
+    "year": "years",
+    "month": "months",
+    "day": "days"
+  },
+  "lang": {
+    "vi": "Tiếng Việt",
+    "en": "English"
+  }
+}

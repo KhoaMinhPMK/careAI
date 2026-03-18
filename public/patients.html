@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh Sách Bệnh Nhân – CareAI</title>
+  <meta name="description" content="CareAI - Danh sách bệnh nhân nhi đang theo dõi dinh dưỡng">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="patients">
+  <div class="app-layout">
+    <div id="app-sidebar"></div>
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h2><span data-icon="users" data-icon-size="22"></span> <span data-i18n="patients.title">Danh Sách Bệnh Nhân</span></h2>
+          <p class="description" data-i18n="patients.desc">Tất cả bệnh nhân nhi đang theo dõi dinh dưỡng</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <div class="input-wrapper">
+          <span class="icon"><span data-icon="search" data-icon-size="16"></span></span>
+          <input type="text" id="search-input" data-i18n-placeholder="patients.search" placeholder="Tìm theo tên hoặc mã hồ sơ...">
+        </div>
+        <select id="risk-filter">
+          <option value="" data-i18n="patients.allRisk">Tất cả mức nguy cơ</option>
+          <option value="critical">Nghiêm trọng</option>
+          <option value="high">Cao</option>
+          <option value="moderate">Trung bình</option>
+          <option value="low">Thấp</option>
+        </select>
+      </div>
+
+      <!-- Patient Table -->
+      <div class="card" style="padding:0; overflow:hidden;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-i18n="patients.name">Bệnh Nhân</th>
+              <th data-i18n="patients.mrn">Mã HS</th>
+              <th data-i18n="patients.age">Tuổi</th>
+              <th data-i18n="patients.ward">Khoa</th>
+              <th data-i18n="patients.risk">Nguy Cơ</th>
+              <th data-i18n="patients.dqScore">CLDT</th>
+              <th data-i18n="patients.alerts">Cảnh Báo</th>
+            </tr>
+          </thead>
+          <tbody id="patient-table"></tbody>
+        </table>
+      </div>
+
+      <div class="footer">CareAI &copy; 2026 — HSIL Hackathon — Harvard T.H. Chan School of Public Health</div>
+    </main>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/copilot.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/patients.js"></script>
+  <script>
+    (async () => {
+      await I18N.init();
+      Layout.injectSidebar('patients');
+      Copilot.init();
+      injectIcons();
+      loadPatients();
+    })();
+  </script>
+</body>
+</html>
