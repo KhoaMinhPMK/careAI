@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-page="medical-record">
+  <div class="app-layout">
   <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar"></aside>
+  <div id="app-sidebar"></div>
 
   <!-- Main -->
   <main class="main-content">
@@ -316,6 +317,7 @@
       </div>
     </div>
   </main>
+  </div><!-- /app-layout -->
 
   <!-- Copilot FAB -->
   <button class="copilot-fab" id="copilot-fab" onclick="Copilot.toggle()">
@@ -330,7 +332,9 @@
   <script src="js/copilot.js"></script>
   <script src="js/medical-record.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      Layout.injectSidebar('medical-record');
+      await injectIcons();
       initMedicalRecordForm();
     });
   </script>

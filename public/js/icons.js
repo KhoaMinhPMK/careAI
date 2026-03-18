@@ -81,6 +81,7 @@ const ICONS = {
   'external-link': 'external-link.svg',
   'maximize': 'maximize.svg',
   'minimize': 'minimize.svg',
+  'clipboard-plus': 'clipboard-plus.svg',
 };
 
 const iconCache = {};
