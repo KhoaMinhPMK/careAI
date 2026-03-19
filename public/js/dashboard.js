@@ -40,8 +40,8 @@ function renderSeverityChart(dist) {
   const labels = Object.keys(dist);
   const values = Object.values(dist);
   const colors = {
-    critical: '#DC2626', high: '#EA580C', warning: '#CA8A04',
-    info: '#2563EB', moderate: '#CA8A04', low: '#059669'
+    critical: '#C53030', high: '#D4620A', warning: '#B8860B',
+    info: '#2563A4', moderate: '#B8860B', low: '#2E7D5B'
   };
   new Chart(ctx, {
     type: 'doughnut',
@@ -51,7 +51,9 @@ function renderSeverityChart(dist) {
     },
     options: {
       responsive: true,
-      plugins: { legend: { position: 'bottom', labels: { color: '#64748B', font: { family: 'Inter', size: 12 }, padding: 14 } } }
+      animation: { duration: 600, easing: 'easeOutQuart' },
+      plugins: { legend: { position: 'bottom', labels: { color: '#5F6778', font: { family: 'Inter', size: 12 }, padding: 14, usePointStyle: true, pointStyle: 'circle' } } },
+      cutout: '62%'
     }
   });
 }
@@ -62,7 +64,7 @@ function renderRiskChart(dist) {
   if (!ctx) return;
   const labels = Object.keys(dist);
   const values = Object.values(dist);
-  const colors = { critical: '#DC2626', high: '#EA580C', moderate: '#CA8A04', low: '#059669', unknown: '#94A3B8' };
+  const colors = { critical: '#C53030', high: '#D4620A', moderate: '#B8860B', low: '#2E7D5B', unknown: '#8B93A1' };
   new Chart(ctx, {
     type: 'doughnut',
     data: {
@@ -71,7 +73,9 @@ function renderRiskChart(dist) {
     },
     options: {
       responsive: true,
-      plugins: { legend: { position: 'bottom', labels: { color: '#64748B', font: { family: 'Inter', size: 12 }, padding: 14 } } }
+      animation: { duration: 600, easing: 'easeOutQuart' },
+      plugins: { legend: { position: 'bottom', labels: { color: '#5F6778', font: { family: 'Inter', size: 12 }, padding: 14, usePointStyle: true, pointStyle: 'circle' } } },
+      cutout: '62%'
     }
   });
 }
@@ -92,15 +96,16 @@ function renderAlertTypesChart(types) {
     type: 'bar',
     data: {
       labels,
-      datasets: [{ data: values, backgroundColor: '#DBEAFE', borderColor: '#0F6FDE', borderWidth: 1, borderRadius: 4 }]
+      datasets: [{ data: values, backgroundColor: 'rgba(37, 99, 164, 0.15)', borderColor: '#2563A4', borderWidth: 1.5, borderRadius: 6 }]
     },
     options: {
       responsive: true,
       indexAxis: 'y',
+      animation: { duration: 600, easing: 'easeOutQuart' },
       plugins: { legend: { display: false } },
       scales: {
-        x: { ticks: { color: '#94A3B8', font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
-        y: { ticks: { color: '#64748B', font: { size: 11 } }, grid: { display: false } }
+        x: { ticks: { color: '#8B93A1', font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        y: { ticks: { color: '#5F6778', font: { size: 11 } }, grid: { display: false } }
       }
     }
   });
@@ -122,14 +127,15 @@ function renderWardChart(wards) {
     type: 'bar',
     data: {
       labels,
-      datasets: [{ data: values, backgroundColor: '#D1FAE5', borderColor: '#059669', borderWidth: 1, borderRadius: 4 }]
+      datasets: [{ data: values, backgroundColor: 'rgba(46, 125, 91, 0.15)', borderColor: '#2E7D5B', borderWidth: 1.5, borderRadius: 6 }]
     },
     options: {
       responsive: true,
+      animation: { duration: 600, easing: 'easeOutQuart' },
       plugins: { legend: { display: false } },
       scales: {
-        x: { ticks: { color: '#64748B', font: { size: 11 } }, grid: { display: false } },
-        y: { ticks: { color: '#94A3B8', font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.04)' }, beginAtZero: true }
+        x: { ticks: { color: '#5F6778', font: { size: 11 } }, grid: { display: false } },
+        y: { ticks: { color: '#8B93A1', font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.04)' }, beginAtZero: true }
       }
     }
   });
