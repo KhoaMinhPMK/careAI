@@ -139,11 +139,25 @@ const Copilot = (() => {
   }
 
   function formatMarkdown(text) {
-    return text
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/`(.*?)`/g, '<code style="background:var(--bg-surface);padding:1px 4px;border-radius:3px;font-size:0.82rem;">$1</code>')
-      .replace(/\n/g, '<br>');
+    // Strip all emoji
+    text = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}\u{2B50}\u{2702}-\u{27B0}\u{23E9}-\u{23FA}\u{200D}\u{20E3}\u{FE0E}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2194}-\u{21AA}\u{231A}\u{231B}\u{25AA}\u{25AB}\u{25B6}\u{25C0}\u{25FB}-\u{25FE}\u{2614}\u{2615}\u{2648}-\u{2653}\u{267F}\u{2693}\u{26A1}\u{26AA}\u{26AB}\u{26BD}\u{26BE}\u{26C4}\u{26C5}\u{26CE}\u{26D4}\u{26EA}\u{26F2}\u{26F3}\u{26F5}\u{26FA}\u{26FD}\u{2934}\u{2935}\u{2B05}-\u{2B07}\u{2B1B}\u{2B1C}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}\u{1F004}\u{1F0CF}\u{1F170}-\u{1F171}\u{1F17E}\u{1F17F}\u{1F18E}\u{1F191}-\u{1F19A}\u{1F201}\u{1F202}\u{1F21A}\u{1F22F}\u{1F232}-\u{1F23A}\u{1F250}\u{1F251}]/gu, '');
+    // Clean up multiple spaces from emoji removal
+    text = text.replace(/  +/g, ' ').trim();
+    // Convert markdown headings
+    text = text.replace(/^###\s*(.+)$/gm, '<h4>$1</h4>');
+    text = text.replace(/^##\s*(.+)$/gm, '<h4>$1</h4>');
+    // Convert bold/italic/code
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    text = text.replace(/`(.*?)`/g, '<code style="background:var(--bg-surface);padding:1px 4px;border-radius:3px;font-size:var(--type-footnote);">$1</code>');
+    // Convert lists
+    text = text.replace(/^[-*]\s+(.+)$/gm, '<li>$1</li>');
+    text = text.replace(/(<li>.*?<\/li>\n?)+/gs, '<ul>$&</ul>');
+    // Convert line breaks
+    text = text.replace(/\n/g, '<br>');
+    // Clean empty br between block elements
+    text = text.replace(/<br>\s*<(h4|ul|\/ul)/g, '<$1');
+    return text;
   }
 
   function getAISummaryHTML(summary) {
