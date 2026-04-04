@@ -16,7 +16,7 @@ async function loadPatientSelector() {
     const selector = document.getElementById('patient-selector');
     selector.innerHTML = '<option value="">Select a patient...</option>' +
       data.patients.map(p =>
-        `<option value="${p.id}">${p.name} (${p.medical_record_number}) — ${p.ward}</option>`
+        `<option value="${p.id}">${(p.name || '').toUpperCase()} (${p.medical_record_number}) — ${p.ward}</option>`
       ).join('');
   } catch (error) {
     console.error('Load patients error:', error);

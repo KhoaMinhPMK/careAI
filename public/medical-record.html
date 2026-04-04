@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,315 +9,328 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body data-page="medical-record">
   <div class="app-layout">
-  <!-- Sidebar -->
-  <div id="app-sidebar"></div>
+    <!-- Sidebar -->
+    <div id="app-sidebar"></div>
 
-  <!-- Main -->
-  <main class="main-content">
-    <header class="content-header">
-      <h1 data-i18n="record.title">Nhập Hồ Sơ Bệnh Án</h1>
-      <p class="subtitle" data-i18n="record.subtitle">Nhập thông tin bệnh nhân và kết quả xét nghiệm — hệ thống sẽ tự động kiểm tra sai sót</p>
-    </header>
+    <!-- Main -->
+    <main class="main-content">
+      <header class="content-header">
+        <h1 data-i18n="record.title">Nhập Hồ Sơ Bệnh Án</h1>
+        <p class="subtitle" data-i18n="record.subtitle">Nhập thông tin bệnh nhân và kết quả xét nghiệm — hệ thống sẽ tự
+          động kiểm tra sai sót</p>
+      </header>
 
-    <!-- Progress Steps -->
-    <div class="wizard-progress" id="wizard-progress">
-      <div class="wizard-step active" data-step="1">
-        <div class="wizard-step-number">1</div>
-        <span data-i18n="record.step1">Thông Tin BN</span>
-      </div>
-      <div class="wizard-connector"></div>
-      <div class="wizard-step" data-step="2">
-        <div class="wizard-step-number">2</div>
-        <span data-i18n="record.step2">Sinh Hiệu</span>
-      </div>
-      <div class="wizard-connector"></div>
-      <div class="wizard-step" data-step="3">
-        <div class="wizard-step-number">3</div>
-        <span data-i18n="record.step3">Xét Nghiệm</span>
-      </div>
-      <div class="wizard-connector"></div>
-      <div class="wizard-step" data-step="4">
-        <div class="wizard-step-number">4</div>
-        <span data-i18n="record.step4">Diễn Biến</span>
-      </div>
-    </div>
-
-    <!-- Step 1: Patient Info -->
-    <section class="wizard-panel active" id="step-1">
-      <div class="card">
-        <div class="card-header">
-          <h2 data-i18n="record.patientInfo">Thông Tin Bệnh Nhân</h2>
-          <div class="patient-search-wrap">
-            <input type="text" id="patient-search" class="form-input" placeholder="Tìm theo MRN hoặc tên bệnh nhân..." data-i18n-placeholder="record.searchPlaceholder">
-            <div id="patient-search-results" class="search-dropdown"></div>
-          </div>
+      <!-- Progress Steps -->
+      <div class="wizard-progress" id="wizard-progress">
+        <div class="wizard-step active" data-step="1">
+          <div class="wizard-step-number">1</div>
+          <span data-i18n="record.step1">Thông Tin BN</span>
         </div>
-        <div class="form-grid-2">
-          <div class="form-group">
-            <label data-i18n="record.fullName">Họ và tên *</label>
-            <input type="text" id="f-name" class="form-input" required>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.mrn">Mã Y Tế (MRN) *</label>
-            <input type="text" id="f-mrn" class="form-input" required>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.dob">Ngày sinh *</label>
-            <input type="date" id="f-dob" class="form-input" required>
-            <span class="field-hint" id="f-age-display"></span>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.gender">Giới tính *</label>
-            <select id="f-gender" class="form-input" required>
-              <option value="">-- Chọn --</option>
-              <option value="male">Nam</option>
-              <option value="female">Nữ</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.ward">Khoa *</label>
-            <select id="f-ward" class="form-input" required>
-              <option value="">-- Chọn --</option>
-              <option value="PICU">PICU</option>
-              <option value="Nhi Tổng hợp">Nhi Tổng hợp</option>
-              <option value="Nhi Tiêu hóa">Nhi Tiêu hóa</option>
-              <option value="Nhi Dinh dưỡng">Nhi Dinh dưỡng</option>
-              <option value="Sơ sinh">Sơ sinh</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.admissionDate">Ngày nhập viện *</label>
-            <input type="date" id="f-admission-date" class="form-input" required>
-          </div>
-          <div class="form-group full-width">
-            <label data-i18n="record.diagnosis">Chẩn đoán chính *</label>
-            <textarea id="f-diagnosis" class="form-input" rows="2" required></textarea>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.comorbidities">Bệnh kèm</label>
-            <input type="text" id="f-comorbidities" class="form-input" placeholder="Không">
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.complications">Biến chứng</label>
-            <input type="text" id="f-complications" class="form-input" placeholder="Không">
-          </div>
-          <div class="form-group full-width">
-            <label data-i18n="record.history">Tiền sử bệnh</label>
-            <textarea id="f-history" class="form-input" rows="2" placeholder="VD: Vắng thận phải, co giật dị ứng..."></textarea>
-          </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="2">
+          <div class="wizard-step-number">2</div>
+          <span data-i18n="record.step2">Sinh Hiệu</span>
+        </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="3">
+          <div class="wizard-step-number">3</div>
+          <span data-i18n="record.step3">Xét Nghiệm</span>
+        </div>
+        <div class="wizard-connector"></div>
+        <div class="wizard-step" data-step="4">
+          <div class="wizard-step-number">4</div>
+          <span data-i18n="record.step4">Diễn Biến</span>
         </div>
       </div>
-    </section>
 
-    <!-- Step 2: Vitals & Anthropometrics -->
-    <section class="wizard-panel" id="step-2">
-      <div class="card">
-        <div class="card-header"><h2 data-i18n="record.vitalsTitle">Chỉ Số Sinh Tồn & Nhân Trắc</h2></div>
-        <div class="form-grid-2">
-          <!-- Anthropometrics -->
-          <div class="form-group">
-            <label data-i18n="record.weight">Cân nặng (kg) *</label>
-            <input type="number" id="f-weight" class="form-input" step="0.1" min="0.1" required>
-            <div class="field-validation" id="v-weight"></div>
+      <!-- Step 1: Patient Info -->
+      <section class="wizard-panel active" id="step-1">
+        <div class="card">
+          <div class="card-header">
+            <h2 data-i18n="record.patientInfo">Thông Tin Bệnh Nhân</h2>
+            <div class="patient-search-wrap">
+              <input type="text" id="patient-search" class="form-input" placeholder="Tìm theo MRN hoặc tên bệnh nhân..."
+                data-i18n-placeholder="record.searchPlaceholder">
+              <div id="patient-search-results" class="search-dropdown"></div>
+            </div>
           </div>
-          <div class="form-group">
-            <label data-i18n="record.height">Chiều cao (cm) *</label>
-            <input type="number" id="f-height" class="form-input" step="0.1" min="1" required>
-            <div class="field-validation" id="v-height"></div>
-          </div>
-          <div class="form-group">
-            <label>Z-Score (WAZ)</label>
-            <div class="zscore-display" id="zscore-waz">—</div>
-          </div>
-          <div class="form-group">
-            <label>Z-Score (HAZ)</label>
-            <div class="zscore-display" id="zscore-haz">—</div>
-          </div>
-          <!-- Vitals -->
-          <div class="form-group">
-            <label data-i18n="record.heartRate">Nhịp tim (l/ph)</label>
-            <input type="number" id="f-hr" class="form-input" min="30" max="250">
-            <span class="field-hint" id="hr-hint"></span>
-            <div class="field-validation" id="v-hr"></div>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.respRate">Tần số thở (l/ph)</label>
-            <input type="number" id="f-rr" class="form-input" min="5" max="100">
-            <div class="field-validation" id="v-rr"></div>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.temp">Nhiệt độ (°C)</label>
-            <input type="number" id="f-temp" class="form-input" step="0.1" min="30" max="45">
-            <div class="field-validation" id="v-temp"></div>
-          </div>
-          <div class="form-group">
-            <label data-i18n="record.crt">CRT (giây)</label>
-            <input type="number" id="f-crt" class="form-input" step="0.5" min="0" max="10">
-            <div class="field-validation" id="v-crt"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Step 3: Lab Results -->
-    <section class="wizard-panel" id="step-3">
-      <!-- Biochemistry -->
-      <div class="card lab-panel">
-        <div class="card-header collapsible" onclick="toggleLabPanel(this)">
-          <h2 data-i18n="record.biochemistry">XN Sinh Hóa</h2>
-          <span class="lab-summary" id="lab-biochem-summary"></span>
-          <span class="collapse-icon">▾</span>
-        </div>
-        <div class="lab-table-wrap" id="lab-biochemistry"></div>
-      </div>
-      <!-- Urinalysis -->
-      <div class="card lab-panel">
-        <div class="card-header collapsible" onclick="toggleLabPanel(this)">
-          <h2 data-i18n="record.urinalysis">XN Nước Tiểu</h2>
-          <span class="lab-summary" id="lab-urine-summary"></span>
-          <span class="collapse-icon">▾</span>
-        </div>
-        <div class="lab-table-wrap" id="lab-urinalysis"></div>
-      </div>
-      <!-- Coagulation -->
-      <div class="card lab-panel">
-        <div class="card-header collapsible" onclick="toggleLabPanel(this)">
-          <h2 data-i18n="record.coagulation">XN Đông Máu</h2>
-          <span class="lab-summary" id="lab-coag-summary"></span>
-          <span class="collapse-icon">▾</span>
-        </div>
-        <div class="lab-table-wrap" id="lab-coagulation"></div>
-      </div>
-      <div class="form-group" style="margin-top:12px;">
-        <label data-i18n="record.labDate">Ngày xét nghiệm</label>
-        <input type="date" id="f-lab-date" class="form-input" style="max-width:240px;">
-      </div>
-      <div class="form-group">
-        <label data-i18n="record.labDoctor">BS chỉ định XN</label>
-        <input type="text" id="f-lab-doctor" class="form-input" style="max-width:300px;" placeholder="VD: Võ Thị Thanh Thảo">
-      </div>
-    </section>
-
-    <!-- Step 4: Progress Notes & Orders -->
-    <section class="wizard-panel" id="step-4">
-      <div class="card">
-        <div class="card-header"><h2 data-i18n="record.progressTitle">Diễn Biến & Y Lệnh</h2></div>
-        <div class="form-grid-2 notes-orders-grid">
-          <!-- Left: Progress Notes -->
-          <div class="notes-column">
-            <h3 data-i18n="record.progressNotes">Diễn Biến Lâm Sàng</h3>
+          <div class="form-grid-2">
             <div class="form-group">
-              <label data-i18n="record.noteDateTime">Ngày giờ</label>
-              <input type="datetime-local" id="f-note-datetime" class="form-input">
+              <label data-i18n="record.fullName">Họ và tên *</label>
+              <input type="text" id="f-name" class="form-input" required>
             </div>
             <div class="form-group">
-              <label data-i18n="record.physicalExam">Khám thực thể</label>
-              <div class="checkbox-group" id="physical-exam-checks">
-                <label class="check-item"><input type="checkbox" value="Trẻ tỉnh, tiếp xúc tốt"> Trẻ tỉnh, tiếp xúc tốt</label>
-                <label class="check-item"><input type="checkbox" value="Da niêm hồng"> Da niêm hồng</label>
-                <label class="check-item"><input type="checkbox" value="Không sốt"> Không sốt</label>
-                <label class="check-item"><input type="checkbox" value="Không nôn"> Không nôn</label>
-                <label class="check-item"><input type="checkbox" value="Không tiêu chảy"> Không tiêu chảy</label>
-                <label class="check-item"><input type="checkbox" value="Bụng mềm, gan lách không lớn"> Bụng mềm</label>
-                <label class="check-item"><input type="checkbox" value="Phù nề"> Phù nề</label>
+              <label data-i18n="record.mrn">Mã Y Tế (MRN) *</label>
+              <input type="text" id="f-mrn" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.dob">Ngày sinh *</label>
+              <input type="date" id="f-dob" class="form-input" required>
+              <span class="field-hint" id="f-age-display"></span>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.gender">Giới tính *</label>
+              <select id="f-gender" class="form-input" required>
+                <option value="">-- Chọn --</option>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.ward">Khoa *</label>
+              <select id="f-ward" class="form-input" required>
+                <option value="">-- Chọn --</option>
+                <option value="PICU">PICU</option>
+                <option value="Nhi Tổng hợp">Nhi Tổng hợp</option>
+                <option value="Nhi Tiêu hóa">Nhi Tiêu hóa</option>
+                <option value="Nhi Dinh dưỡng">Nhi Dinh dưỡng</option>
+                <option value="Sơ sinh">Sơ sinh</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.admissionDate">Ngày nhập viện *</label>
+              <input type="date" id="f-admission-date" class="form-input" required>
+            </div>
+            <div class="form-group full-width">
+              <label data-i18n="record.diagnosis">Chẩn đoán chính *</label>
+              <textarea id="f-diagnosis" class="form-input" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.comorbidities">Bệnh kèm</label>
+              <input type="text" id="f-comorbidities" class="form-input" placeholder="Không">
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.complications">Biến chứng</label>
+              <input type="text" id="f-complications" class="form-input" placeholder="Không">
+            </div>
+            <div class="form-group full-width">
+              <label data-i18n="record.history">Tiền sử bệnh</label>
+              <textarea id="f-history" class="form-input" rows="2"
+                placeholder="VD: Vắng thận phải, co giật dị ứng..."></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2: Vitals & Anthropometrics -->
+      <section class="wizard-panel" id="step-2">
+        <div class="card">
+          <div class="card-header">
+            <h2 data-i18n="record.vitalsTitle">Chỉ Số Sinh Tồn & Nhân Trắc</h2>
+          </div>
+          <div class="form-grid-2">
+            <!-- Anthropometrics -->
+            <div class="form-group">
+              <label data-i18n="record.weight">Cân nặng (kg) *</label>
+              <input type="number" id="f-weight" class="form-input" step="0.1" min="0.1" required>
+              <div class="field-validation" id="v-weight"></div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.height">Chiều cao (cm) *</label>
+              <input type="number" id="f-height" class="form-input" step="0.1" min="1" required>
+              <div class="field-validation" id="v-height"></div>
+            </div>
+            <div class="form-group">
+              <label>Z-Score (WAZ)</label>
+              <div class="zscore-display" id="zscore-waz">—</div>
+            </div>
+            <div class="form-group">
+              <label>Z-Score (HAZ)</label>
+              <div class="zscore-display" id="zscore-haz">—</div>
+            </div>
+            <!-- Vitals -->
+            <div class="form-group">
+              <label data-i18n="record.heartRate">Nhịp tim (l/ph)</label>
+              <input type="number" id="f-hr" class="form-input" min="30" max="250">
+              <span class="field-hint" id="hr-hint"></span>
+              <div class="field-validation" id="v-hr"></div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.respRate">Tần số thở (l/ph)</label>
+              <input type="number" id="f-rr" class="form-input" min="5" max="100">
+              <div class="field-validation" id="v-rr"></div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.temp">Nhiệt độ (°C)</label>
+              <input type="number" id="f-temp" class="form-input" step="0.1" min="30" max="45">
+              <div class="field-validation" id="v-temp"></div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="record.crt">CRT (giây)</label>
+              <input type="number" id="f-crt" class="form-input" step="0.5" min="0" max="10">
+              <div class="field-validation" id="v-crt"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 3: Lab Results -->
+      <section class="wizard-panel" id="step-3">
+        <!-- Biochemistry -->
+        <div class="card lab-panel">
+          <div class="card-header collapsible" onclick="toggleLabPanel(this)">
+            <h2 data-i18n="record.biochemistry">XN Sinh Hóa</h2>
+            <span class="lab-summary" id="lab-biochem-summary"></span>
+            <span class="collapse-icon">▾</span>
+          </div>
+          <div class="lab-table-wrap" id="lab-biochemistry"></div>
+        </div>
+        <!-- Urinalysis -->
+        <div class="card lab-panel">
+          <div class="card-header collapsible" onclick="toggleLabPanel(this)">
+            <h2 data-i18n="record.urinalysis">XN Nước Tiểu</h2>
+            <span class="lab-summary" id="lab-urine-summary"></span>
+            <span class="collapse-icon">▾</span>
+          </div>
+          <div class="lab-table-wrap" id="lab-urinalysis"></div>
+        </div>
+        <!-- Coagulation -->
+        <div class="card lab-panel">
+          <div class="card-header collapsible" onclick="toggleLabPanel(this)">
+            <h2 data-i18n="record.coagulation">XN Đông Máu</h2>
+            <span class="lab-summary" id="lab-coag-summary"></span>
+            <span class="collapse-icon">▾</span>
+          </div>
+          <div class="lab-table-wrap" id="lab-coagulation"></div>
+        </div>
+        <div class="form-group" style="margin-top:12px;">
+          <label data-i18n="record.labDate">Ngày xét nghiệm</label>
+          <input type="date" id="f-lab-date" class="form-input" style="max-width:240px;">
+        </div>
+        <div class="form-group">
+          <label data-i18n="record.labDoctor">BS chỉ định XN</label>
+          <input type="text" id="f-lab-doctor" class="form-input" style="max-width:300px;"
+            placeholder="VD: Võ Thị Thanh Thảo">
+        </div>
+      </section>
+
+      <!-- Step 4: Progress Notes & Orders -->
+      <section class="wizard-panel" id="step-4">
+        <div class="card">
+          <div class="card-header">
+            <h2 data-i18n="record.progressTitle">Diễn Biến & Y Lệnh</h2>
+          </div>
+          <div class="form-grid-2 notes-orders-grid">
+            <!-- Left: Progress Notes -->
+            <div class="notes-column">
+              <h3 data-i18n="record.progressNotes">Diễn Biến Lâm Sàng</h3>
+              <div class="form-group">
+                <label data-i18n="record.noteDateTime">Ngày giờ</label>
+                <input type="datetime-local" id="f-note-datetime" class="form-input">
+              </div>
+              <div class="form-group">
+                <label data-i18n="record.physicalExam">Khám thực thể</label>
+                <div class="checkbox-group" id="physical-exam-checks">
+                  <label class="check-item"><input type="checkbox" value="Trẻ tỉnh, tiếp xúc tốt"> Trẻ tỉnh, tiếp xúc
+                    tốt</label>
+                  <label class="check-item"><input type="checkbox" value="Da niêm hồng"> Da niêm hồng</label>
+                  <label class="check-item"><input type="checkbox" value="Không sốt"> Không sốt</label>
+                  <label class="check-item"><input type="checkbox" value="Không nôn"> Không nôn</label>
+                  <label class="check-item"><input type="checkbox" value="Không tiêu chảy"> Không tiêu chảy</label>
+                  <label class="check-item"><input type="checkbox" value="Bụng mềm, gan lách không lớn"> Bụng
+                    mềm</label>
+                  <label class="check-item"><input type="checkbox" value="Phù nề"> Phù nề</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label data-i18n="record.clinicalNote">Ghi chú lâm sàng</label>
+                <textarea id="f-clinical-note" class="form-input" rows="6"
+                  placeholder="Ghi chú diễn biến bệnh..."></textarea>
+                <div class="nlp-preview" id="nlp-preview"></div>
+              </div>
+              <div class="form-group">
+                <label data-i18n="record.noteAuthor">BS ghi</label>
+                <input type="text" id="f-note-author" class="form-input" placeholder="VD: Hà Thị Thúy Nga">
               </div>
             </div>
-            <div class="form-group">
-              <label data-i18n="record.clinicalNote">Ghi chú lâm sàng</label>
-              <textarea id="f-clinical-note" class="form-input" rows="6" placeholder="Ghi chú diễn biến bệnh..."></textarea>
-              <div class="nlp-preview" id="nlp-preview"></div>
-            </div>
-            <div class="form-group">
-              <label data-i18n="record.noteAuthor">BS ghi</label>
-              <input type="text" id="f-note-author" class="form-input" placeholder="VD: Hà Thị Thúy Nga">
-            </div>
-          </div>
 
-          <!-- Right: Orders -->
-          <div class="orders-column">
-            <h3 data-i18n="record.orders">Y Lệnh</h3>
-            <div class="form-group">
-              <label data-i18n="record.careLevel">Chế độ chăm sóc</label>
-              <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="care-level" value="Cấp 1"> Cấp 1</label>
-                <label class="radio-item"><input type="radio" name="care-level" value="Cấp 2"> Cấp 2</label>
-                <label class="radio-item"><input type="radio" name="care-level" value="Cấp 3" checked> Cấp 3</label>
+            <!-- Right: Orders -->
+            <div class="orders-column">
+              <h3 data-i18n="record.orders">Y Lệnh</h3>
+              <div class="form-group">
+                <label data-i18n="record.careLevel">Chế độ chăm sóc</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="care-level" value="Cấp 1"> Cấp 1</label>
+                  <label class="radio-item"><input type="radio" name="care-level" value="Cấp 2"> Cấp 2</label>
+                  <label class="radio-item"><input type="radio" name="care-level" value="Cấp 3" checked> Cấp 3</label>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label data-i18n="record.diet">Chế độ ăn</label>
-              <input type="text" id="f-diet" class="form-input" placeholder="VD: 3BT cháo sữa cháo">
-            </div>
-            <div class="form-group">
-              <label data-i18n="record.medications">Thuốc điều trị</label>
-              <div id="medication-list"></div>
-              <button type="button" class="btn-outline btn-sm" id="btn-add-med" onclick="addMedRow()">
-                <span>+</span> <span data-i18n="record.addMed">Thêm thuốc</span>
-              </button>
-            </div>
-            <div class="form-group">
-              <label data-i18n="record.monitoring">Theo dõi</label>
-              <div class="checkbox-group">
-                <label class="check-item"><input type="checkbox" value="Mạch, nhiệt, HA, SpO2"> Mạch, nhiệt, HA, SpO2</label>
-                <label class="check-item"><input type="checkbox" value="Tần số thở"> Tần số thở</label>
-                <label class="check-item"><input type="checkbox" value="Tiểu (lượng + màu)"> Tiểu</label>
+              <div class="form-group">
+                <label data-i18n="record.diet">Chế độ ăn</label>
+                <input type="text" id="f-diet" class="form-input" placeholder="VD: 3BT cháo sữa cháo">
               </div>
-            </div>
-            <div class="form-group">
-              <label data-i18n="record.labOrders">Xét nghiệm chỉ định</label>
-              <div id="lab-order-list"></div>
-              <button type="button" class="btn-outline btn-sm" onclick="addLabOrderRow()">
-                <span>+</span> <span data-i18n="record.addLabOrder">Thêm XN</span>
-              </button>
-            </div>
-            <div class="form-group">
-              <label data-i18n="record.orderDoctor">BS chỉ định</label>
-              <input type="text" id="f-order-doctor" class="form-input" placeholder="VD: Hà Thị Thúy Nga">
+              <div class="form-group">
+                <label data-i18n="record.medications">Thuốc điều trị</label>
+                <div id="medication-list"></div>
+                <button type="button" class="btn-outline btn-sm" id="btn-add-med" onclick="addMedRow()">
+                  <span>+</span> <span data-i18n="record.addMed">Thêm thuốc</span>
+                </button>
+              </div>
+              <div class="form-group">
+                <label data-i18n="record.monitoring">Theo dõi</label>
+                <div class="checkbox-group">
+                  <label class="check-item"><input type="checkbox" value="Mạch, nhiệt, HA, SpO2"> Mạch, nhiệt, HA,
+                    SpO2</label>
+                  <label class="check-item"><input type="checkbox" value="Tần số thở"> Tần số thở</label>
+                  <label class="check-item"><input type="checkbox" value="Tiểu (lượng + màu)"> Tiểu</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label data-i18n="record.labOrders">Xét nghiệm chỉ định</label>
+                <div id="lab-order-list"></div>
+                <button type="button" class="btn-outline btn-sm" onclick="addLabOrderRow()">
+                  <span>+</span> <span data-i18n="record.addLabOrder">Thêm XN</span>
+                </button>
+              </div>
+              <div class="form-group">
+                <label data-i18n="record.orderDoctor">BS chỉ định</label>
+                <input type="text" id="f-order-doctor" class="form-input" placeholder="VD: Hà Thị Thúy Nga">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Navigation & Submit -->
-    <div class="wizard-nav">
-      <button class="btn-outline" id="btn-prev" onclick="prevStep()" style="display:none">
-        <span data-i18n="record.prev">← Quay lại</span>
-      </button>
-      <div class="wizard-nav-right">
-        <button class="btn-outline" id="btn-draft" onclick="saveDraft()">
-          <span data-i18n="record.saveDraft">Lưu nháp</span>
+      <!-- Navigation & Submit -->
+      <div class="wizard-nav">
+        <button class="btn-outline" id="btn-prev" onclick="prevStep()" style="display:none">
+          <span data-i18n="record.prev">← Quay lại</span>
         </button>
-        <button class="btn-primary" id="btn-next" onclick="nextStep()">
-          <span data-i18n="record.next">Tiếp theo →</span>
-        </button>
-        <button class="btn-primary btn-submit" id="btn-submit" onclick="submitRecord()" style="display:none">
-          <span data-i18n="record.submit">💾 Lưu Hồ Sơ & Kiểm Tra</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Validation Result Modal -->
-    <div class="validation-result" id="validation-result" style="display:none">
-      <div class="card">
-        <div class="card-header">
-          <h2 data-i18n="record.resultTitle">Kết Quả Kiểm Tra</h2>
-          <button class="btn-outline btn-sm" onclick="closeValidationResult()">✕</button>
-        </div>
-        <div id="validation-result-body"></div>
-        <div class="validation-actions">
-          <a id="btn-view-patient" class="btn-primary" href="#">
-            <span data-i18n="record.viewPatient">Xem Chi Tiết BN</span>
-          </a>
-          <button class="btn-outline" onclick="resetForm()">
-            <span data-i18n="record.newRecord">Nhập BN Khác</span>
+        <div class="wizard-nav-right">
+          <button class="btn-outline" id="btn-draft" onclick="saveDraft()">
+            <span data-i18n="record.saveDraft">Lưu nháp</span>
+          </button>
+          <button class="btn-primary" id="btn-next" onclick="nextStep()">
+            <span data-i18n="record.next">Tiếp theo →</span>
+          </button>
+          <button class="btn-primary btn-submit" id="btn-submit" onclick="submitRecord()" style="display:none">
+            <span data-i18n="record.submit">💾 Lưu Hồ Sơ & Kiểm Tra</span>
           </button>
         </div>
       </div>
-    </div>
-  </main>
+
+      <!-- Validation Result Modal -->
+      <div class="validation-result" id="validation-result" style="display:none">
+        <div class="card">
+          <div class="card-header">
+            <h2 data-i18n="record.resultTitle">Kết Quả Kiểm Tra</h2>
+            <button class="btn-outline btn-sm" onclick="closeValidationResult()">✕</button>
+          </div>
+          <div id="validation-result-body"></div>
+          <div class="validation-actions">
+            <a id="btn-view-patient" class="btn-primary" href="#">
+              <span data-i18n="record.viewPatient">Xem Chi Tiết BN</span>
+            </a>
+            <button class="btn-outline" onclick="resetForm()">
+              <span data-i18n="record.newRecord">Nhập BN Khác</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
   </div><!-- /app-layout -->
 
   <!-- Copilot FAB -->
@@ -336,7 +350,9 @@
       Layout.injectSidebar('medical-record');
       await injectIcons();
       initMedicalRecordForm();
+      Copilot.init();
     });
   </script>
 </body>
+
 </html>

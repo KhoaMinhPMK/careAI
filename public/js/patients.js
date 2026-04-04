@@ -32,13 +32,14 @@ function renderPatientTable(patients) {
     const dqClass = dq !== null ? (dq >= 80 ? 'good' : dq >= 60 ? 'moderate' : 'poor') : '';
     const alertCount = p.active_alerts ?? 0;
     const age = p.date_of_birth ? I18N.formatAge(p.date_of_birth) : '-';
-    const initials = (p.name || '--').split(' ').map(w => w.charAt(0)).join('').slice(0, 2);
+    const initials = (p.name || '--').split(' ').map(w => w.charAt(0)).join('').slice(0, 2).toUpperCase();
+    const displayName = (p.name || '-').toUpperCase();
 
     return `<tr onclick="window.location.href='patient-detail.html?id=${p.id}'">
       <td>
         <div style="display:flex;align-items:center;gap:10px;">
           <div style="width:32px;height:32px;border-radius:6px;background:var(--accent-primary);color:white;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0;">${initials}</div>
-          <span class="patient-name">${p.name || '-'}</span>
+          <span class="patient-name">${displayName}</span>
         </div>
       </td>
       <td><span class="mrn">${p.medical_record_number || '-'}</span></td>

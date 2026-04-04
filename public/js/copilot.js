@@ -1,8 +1,4 @@
-/* ═══════════════════════════════════════════
-   CareAI Copilot – Floating AI Assistant
-   Context-aware, slide-in panel
-   ═══════════════════════════════════════════ */
-
+﻿
 const Copilot = (() => {
   let isOpen = false;
   let currentPatientId = null;
@@ -34,11 +30,29 @@ const Copilot = (() => {
   }
 
   function init() {
-    // Inject HTML
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = getHTML();
-    while (wrapper.firstChild) {
-      document.body.appendChild(wrapper.firstChild);
+    // Check if copilot elements already exist
+    const existingFab = document.getElementById('copilot-fab');
+    const existingPanel = document.getElementById('copilot-panel');
+
+    if (existingPanel && !existingPanel.innerHTML.trim()) {
+      // Panel exists but is empty, populate it with the HTML content
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = getHTML();
+      // Find the copilot-panel div in the wrapper
+      const panelDiv = wrapper.querySelector('.copilot-panel');
+      if (panelDiv) {
+        // Copy the child elements from the fresh panel to the existing one
+        while (panelDiv.firstChild) {
+          existingPanel.appendChild(panelDiv.firstChild);
+        }
+      }
+    } else if (!existingFab) {
+      // Inject HTML if elements don't exist
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = getHTML();
+      while (wrapper.firstChild) {
+        document.body.appendChild(wrapper.firstChild);
+      }
     }
 
     // Bind events
@@ -67,10 +81,12 @@ const Copilot = (() => {
   function open() {
     const panel = document.getElementById('copilot-panel');
     const fab = document.getElementById('copilot-fab');
+    const input = document.getElementById('copilot-input');
     panel.classList.add('open');
     fab.classList.add('active');
+    fab.style.display = 'none';
     isOpen = true;
-    document.getElementById('copilot-input').focus();
+    if (input) input.focus();
   }
 
   function close() {
@@ -78,6 +94,7 @@ const Copilot = (() => {
     const fab = document.getElementById('copilot-fab');
     panel.classList.remove('open');
     fab.classList.remove('active');
+    fab.style.display = 'flex';
     isOpen = false;
   }
 
@@ -200,3 +217,6 @@ const Copilot = (() => {
 
   return { init, open, close, toggle, setPatientContext, addMessage, loadAISummary, refreshSummary, getAISummaryHTML };
 })();
+
+
+

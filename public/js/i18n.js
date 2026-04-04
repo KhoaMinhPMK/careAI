@@ -45,6 +45,15 @@ const I18N = (() => {
         }
       }
     });
+
+    // Apply i18n placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const translated = t(key);
+      if (translated !== key) {
+        el.placeholder = translated;
+      }
+    });
   }
 
   function getLang() { return currentLang; }
