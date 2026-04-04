@@ -127,7 +127,7 @@ const Layout = (() => {
           } else {
             dropdown.innerHTML = patients.slice(0, 6).map(p => `
               <div class="search-item" onclick="window.location.href='patient-detail.html?id=${p.id}'">
-                <strong>${p.name}</strong>
+                <strong>${(p.name || '').toUpperCase()}</strong>
                 <span class="search-meta">${p.medical_record_number || ''} · ${p.ward || ''}</span>
               </div>
             `).join('');

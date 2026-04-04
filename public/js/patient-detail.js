@@ -27,7 +27,7 @@ async function loadPatientDetail() {
 
     // Set copilot context
     if (typeof Copilot !== 'undefined') {
-      Copilot.setPatientContext(id, patientData.patient.name || '');
+      Copilot.setPatientContext(id, (patientData.patient.name || '').toUpperCase());
       Copilot.loadAISummary(id);
     }
 
@@ -38,9 +38,10 @@ async function loadPatientDetail() {
 
 function renderBanner(data) {
   const p = data.patient;
-  const initials = (p.name || '--').split(' ').map(w => w.charAt(0)).join('').slice(0, 2);
+  const initials = (p.name || '--').split(' ').map(w => w.charAt(0)).join('').slice(0, 2).toUpperCase();
+  const displayName = (p.name || '-').toUpperCase();
   document.getElementById('banner-avatar').textContent = initials;
-  document.getElementById('banner-name').textContent = p.name || '-';
+  document.getElementById('banner-name').textContent = displayName;
 
   const age = p.date_of_birth ? I18N.formatAge(p.date_of_birth) : '-';
   const gender = p.gender === 'female' ? 'Nữ' : 'Nam';
@@ -51,7 +52,7 @@ function renderBanner(data) {
   const risk = (p.risk_level || 'low').toLowerCase();
   sev.innerHTML = `<span class="severity-badge ${risk}">${I18N.t('severity.' + risk, risk)}</span>`;
 
-  document.title = `${p.name || 'Bệnh nhân'} – CareAI`;
+  document.title = `${displayName} – CareAI`;
 }
 
 function renderNutritionSummary(data) {

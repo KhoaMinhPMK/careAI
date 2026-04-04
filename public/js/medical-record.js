@@ -149,7 +149,7 @@ function setupSearchAutocomplete() {
         } else {
           dropdown.innerHTML = patients.slice(0, 8).map(p => `
             <div class="search-item" onclick="selectPatient(${JSON.stringify(p).replace(/"/g, '&quot;')})">
-              <strong>${p.name}</strong>
+              <strong>${(p.name || '').toUpperCase()}</strong>
               <span class="search-meta">${p.medical_record_number} | ${p.ward}</span>
             </div>
           `).join('');
@@ -166,7 +166,7 @@ function setupSearchAutocomplete() {
 }
 
 function selectPatient(p) {
-  document.getElementById('f-name').value = p.name || '';
+  document.getElementById('f-name').value = (p.name || '').toUpperCase();
   document.getElementById('f-mrn').value = p.medical_record_number || '';
   document.getElementById('f-dob').value = p.date_of_birth || '';
   document.getElementById('f-gender').value = p.gender || '';
@@ -177,7 +177,7 @@ function selectPatient(p) {
   document.getElementById('patient-search').value = '';
   // Calculate age
   if (p.date_of_birth) updateAgeDisplay();
-  showToast(`Đã chọn: ${p.name}`, 'success');
+  showToast(`Đã chọn: ${(p.name || '').toUpperCase()}`, 'success');
 }
 
 function clearSearch() {
